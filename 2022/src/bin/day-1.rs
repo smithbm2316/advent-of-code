@@ -1,7 +1,5 @@
-use std::fs;
-
-pub fn e1(path: &str) -> i32 {
-    let input = fs::read_to_string(path).expect("Should have been able to read the file");
+fn e1(path: &str) -> i32 {
+    let input = std::fs::read_to_string(path).unwrap();
 
     let mut most_calories = 0;
     let mut calories = 0;
@@ -32,8 +30,8 @@ struct Elf {
     calories: i32,
 }
 
-pub fn e2(path: &str) -> i32 {
-    let input = fs::read_to_string(path).expect("Should have been able to read the file");
+fn e2(path: &str) -> i32 {
+    let input = std::fs::read_to_string(path).unwrap();
 
     let mut current_elf: i32 = 1;
     let mut current_cals: i32 = 0;
@@ -81,4 +79,9 @@ pub fn e2(path: &str) -> i32 {
     let total_calories = top_elves[0].calories + top_elves[1].calories + top_elves[2].calories;
     println!("total calories by top 3 elves: {}", total_calories);
     return total_calories;
+}
+
+fn main() {
+    e1("./src/bin/day-1.txt");
+    e2("./src/bin/day-1.txt");
 }

@@ -1,6 +1,4 @@
-fn e1(path: &str) -> i32 {
-    let input = std::fs::read_to_string(path).unwrap();
-
+pub fn part1(input: String) -> i32 {
     let mut most_calories = 0;
     let mut calories = 0;
     let mut elf = 1;
@@ -25,14 +23,12 @@ fn e1(path: &str) -> i32 {
     return most_calories;
 }
 
-struct Elf {
+pub struct Elf {
     _id: i32,
     calories: i32,
 }
 
-fn e2(path: &str) -> i32 {
-    let input = std::fs::read_to_string(path).unwrap();
-
+pub fn part2(input: String) -> i32 {
     let mut current_elf: i32 = 1;
     let mut current_cals: i32 = 0;
     let mut elves: Vec<Elf> = Vec::new();
@@ -81,7 +77,30 @@ fn e2(path: &str) -> i32 {
     return total_calories;
 }
 
-fn main() {
-    e1("./src/bin/day-1.txt");
-    e2("./src/bin/day-1.txt");
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs::read_to_string;
+
+    #[test]
+    fn part1_works() {
+        let input = read_to_string("./short.txt").unwrap();
+        let short_result = part1(input);
+        assert_eq!(short_result, 24000);
+
+        let input = read_to_string("./puzzle.txt").unwrap();
+        let puzzle_result = part1(input);
+        assert_eq!(puzzle_result, 69501);
+    }
+
+    #[test]
+    fn part2_works() {
+        let input = read_to_string("./short.txt").unwrap();
+        let short_result = part2(input);
+        assert_eq!(short_result, 45000);
+
+        let input = read_to_string("./puzzle.txt").unwrap();
+        let puzzle_result = part2(input);
+        assert_eq!(puzzle_result, 202346);
+    }
 }
